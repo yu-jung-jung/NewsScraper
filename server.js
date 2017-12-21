@@ -27,18 +27,24 @@ app.set ("view engine", "handlebars");
 var routes = require("./controller/controller.js");
 
 app.use("/", routes);
+
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
+mongoose.Promise = Promise;
+mongoose.connect(MONGODB_URI, {
+  useMongoClient: true
+});
+
 //mongoose.connect('mongodb://localhost/myapp');
-mongoose.connect("	")
+// mongoose.connect("	")
+// var db = mongoose.connection;
 
-var db = mongoose.connection;
+// db.on("error", function(err) {
+// 	console.log(err)
+// })
 
-db.on("error", function(err) {
-	console.log(err)
-})
-
-db.once("open", function(){
-	console.log("connected")
-})
+// db.once("open", function(){
+// 	console.log("connected")
+// })
 
 app.listen(PORT, function() {
 	console.log("App running on PORT " + PORT)
