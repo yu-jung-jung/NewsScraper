@@ -40,7 +40,7 @@ router.post("/scraped", function(req, res){
 
 		var articleArr = [];
 		//{}
-		$("article h3").each(function(i, element){
+		$("article h2").each(function(i, element){
 			var result = {};
 			result.title = $(this).children("a").attr("href");
 
