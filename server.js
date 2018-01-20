@@ -38,7 +38,7 @@ var routes = require("./controller/controller.js");
 app.use("/", routes);
 
 mongoose.connect("mongodb://heroku_gnzk5747:4d2121nhgnfbdl1pfirsdepk9n@ds125262.mlab.com:25262/heroku_gnzk5747");
-
+// var url = 'mongodb://username:password@ds01316.mlab.com:1316/food';
 var db = mongoose.connection;
 
 // Show any mongoose errors
