@@ -1,43 +1,30 @@
+// Require mongoose
 var mongoose = require("mongoose");
+// Create Schema class
 var Schema = mongoose.Schema;
 
-var Articleschema = new Schema({
-	title: {
-		type: String,
-		required: true,
-	},
-	link: {
-		type: String,
-		required: true,
-	},
-	summary: {
-		type: String,
-		default: "Summary unavailable."
-	},
-	img: {
-		type: String,
-		default: "/assets/images/unavailable.jpg"
-	},
-	issaved: {
-		type: Boolean,
-		default: false
-	},
-	status: {
-		type: String,
-		default: "Save Article"
-	},
-	created: {
-		type: Date,
-		default: Date.now
-	},
-	note: {
-		type: Schema.Types.ObjectId,
-		ref: "Note"
-	}
+// Create article schema
+var ArticleSchema = new Schema({
+  // title is a required string
+  title: {
+    type: String,
+    required: true
+  },
+  // link is a required string
+  // todo save summary paragraph instead of link
+  link: {
+    type: String,
+    required: true
+  },
+  // Saves array of notes.
+  notes: [{
+    type: Schema.Types.ObjectId,
+    ref: "Note"
+  }]
 });
 
-Articleschema.index({title: "text"});
-
+// Create the Article model with the ArticleSchema
 var Article = mongoose.model("Article", ArticleSchema);
 
+// Export the model
 module.exports = Article;
